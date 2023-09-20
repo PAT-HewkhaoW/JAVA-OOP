@@ -84,7 +84,6 @@ public class JFrameMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1340, 900));
-        setPreferredSize(new java.awt.Dimension(1340, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153)));
@@ -288,7 +287,12 @@ public class JFrameMain extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    public class customerArr{
+    
+        public customer newCustomer(String cClass, String Name , String Email , int Phone){
+            return new customer(Name, Email , Phone);
+        }
+    }
 
     private void jPrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPrintButtonActionPerformed
         // TODO add your handling code here:
@@ -308,6 +312,7 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextFieldNameActionPerformed
 
     private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
@@ -318,27 +323,35 @@ public class JFrameMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         
 
-        Integer selectedRoom = Integer.parseInt(jSelectRoomNo.getSelectedItem().toString());
+        Integer selectedRoom = Integer.valueOf(jSelectRoomNo.getSelectedItem().toString());
         
         for ( int i = 0 ; i < jTableGuest.getRowCount() ; i ++ ) {
             if ( jSelectRoomNo.getSelectedIndex() != 0 ) {
-                String name = jTextFieldName.getText();
-                String email = jTextFieldEmail.getText();
-                String phone = (jTextFieldPhone.getText());
-                String CheckInTime = getCurrentTime(); 
-                if (jTableGuest.getModel().getValueAt(i, 0).equals(selectedRoom)) {
-                    jTableGuest.setValueAt(name, i, 1);
-                    jTableGuest.setValueAt(email, i, 2);
-                    jTableGuest.setValueAt(phone, i, 3);
-                    jTableGuest.setValueAt(CheckInTime, i, 5);
-                    jTableGuest.setValueAt(null, i, 6);
+                if (!(jTextFieldName.getText().equals(null)) || !(jTextFieldEmail.getText().equals(null)) || !(jTextFieldPhone.getText().equals(null))) {
+                    String name = jTextFieldName.getText();
+                    String email = jTextFieldEmail.getText();
+                    String phone = (jTextFieldPhone.getText());
+                    String CheckInTime = getCurrentTime(); 
+                    if (jTableGuest.getModel().getValueAt(i, 0).equals(selectedRoom)) {
+                        jLabelError.setText("");
+                        jTableGuest.setValueAt(name, i, 1);
+                        jTableGuest.setValueAt(email, i, 2);
+                        jTableGuest.setValueAt(phone, i, 3);
+                        jTableGuest.setValueAt(CheckInTime, i, 5);
+                        jTableGuest.setValueAt(null, i, 6);
                     
-                    jTextFieldName.setText("");
-                    jTextFieldEmail.setText("");
-                    jTextFieldPhone.setText("");
-                    jSelectRoomNo.setSelectedIndex(0);
-                    jComboBoxSelectRow.addItem(phone);
+                        jTextFieldName.setText("");
+                        jTextFieldEmail.setText("");
+                        jTextFieldPhone.setText("");
+                        jSelectRoomNo.setSelectedIndex(0);
+                        jComboBoxSelectRow.addItem(phone);
                 }
+                    
+                } else {
+                    jLabelError.setText("*Please fill the form*");
+                }
+                
+                
                 
                 
                  
@@ -351,13 +364,7 @@ public class JFrameMain extends javax.swing.JFrame {
 ////        Object[] newRow = { row , name , email , phone , selectedRoom, CheckInTime , null };
 ////        dtm.addRow(newRow);
 //
-//        jTableGuest.setModel(dtm);
-        
-        
-        
-        
-        
-        
+//        jTableGuest.setModel(dtm);        
 //        Object selectedRoomObj = jSelectRoomNo.getSelectedItem();
 //        String selectedRoom = selectedRoomObj.toString();
 //        String classname = selectedRoom;
@@ -452,10 +459,12 @@ public class JFrameMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         String SelectedCheckOut = (String) jComboBoxSelectRow.getSelectedItem();
         
-        for ( int j = 0 ; j < jTableGuest.getRowCount() -1 ; j++) {
-            if (jTableGuest.getValueAt(j, 3) == SelectedCheckOut ) {
-                if (jTableGuest.getValueAt(j, 6) == null ) {
+        for ( int j = 0 ; j < jTableGuest.getRowCount() ; j++) {
+            if (SelectedCheckOut != null) {
+                if (jTableGuest.getValueAt(j, 3) == SelectedCheckOut ) {
+                    if (jTableGuest.getValueAt(j, 6) == null ) {
                     jTableGuest.setValueAt(getCurrentTime(), j, 6);
+                    }
                 }
             }
         }
@@ -647,6 +656,28 @@ public class JFrameMain extends javax.swing.JFrame {
         }
     }
 
+    class customer{
+        int Cash;
+        String Name;
+        String Email;
+        int Phone;
+        int Change;
+
+        public customer(String inName ,String inEmail,  int inPhone ) {
+            this.Name = inName;
+            this.Email = inEmail;
+            this.Phone = inPhone;
+        }  
+    }
+    
+    class ReserveGuest extends customer{
+
+        Date ReserveDate ;
+        public ReserveGuest() {
+            super(null, null,0);
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel date;
