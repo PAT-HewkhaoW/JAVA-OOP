@@ -1,11 +1,10 @@
-
-    import java.util.ArrayList;
+import java.util.ArrayList;
 
 public class projecthotel {
     public static void main(String[] args) {
         ArrayList<Hotel> personList = new ArrayList<Hotel>();
         Hotel h = new Hotel("John");
-        Customer c  = new Customer("Woramet");
+        Customer c = new Customer("Woramet");
         Customer1 a = new Customer1("Chawanakorb");
 
         personList.add(h);
@@ -16,7 +15,6 @@ public class projecthotel {
             personList.get(i).showDetails();
         }
 
-        
     }
 }
 
@@ -42,10 +40,10 @@ class Hotel {
     }
 
     public void showDetails() {
-        System.out.println("**************************");
+        System.out.println("****************************");
         System.out.println("Name: " + name);
         System.out.println("Email: " + this.email);
-        System.out.println("roomnumber : " + this.roomnumber);
+        System.out.println("Roomnumber : " + this.roomnumber);
         System.out.println("PhoneNumber: " + this.phonenumber);
         System.out.println("Roomtype: " + this.roomtype);
         System.out.println("Pricepernight: " + this.pricepernight);
@@ -58,7 +56,7 @@ class Customer extends Hotel {
     Customer(String name) {
         super(name);
         this.email = "woramet@";
-        this.roomnumber = 101;
+        this.roomnumber = 102;
         this.phonenumber = 0555565;
         this.roomtype = "Standart";
         this.pricepernight = 3000;
@@ -67,7 +65,6 @@ class Customer extends Hotel {
 
     }
 
-    
     public void showDetails() {
         super.showDetails();
     }
@@ -77,7 +74,7 @@ class Customer1 extends Hotel {
     Customer1(String name) {
         super(name);
         this.email = "Chawanakon@";
-        this.roomnumber = 102;
+        this.phonenumber = 103;
         this.phonenumber = 555552;
         this.roomtype = "Standart";
         this.pricepernight = 3000;
@@ -86,9 +83,7 @@ class Customer1 extends Hotel {
 
     }
 
-   
     public void showDetails() {
         super.showDetails();
     }
-
 }
