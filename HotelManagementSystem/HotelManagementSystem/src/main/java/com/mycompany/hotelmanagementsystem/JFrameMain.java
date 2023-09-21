@@ -6,6 +6,8 @@ package com.mycompany.hotelmanagementsystem;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -61,9 +63,6 @@ public class JFrameMain extends javax.swing.JFrame {
         jComboBoxSelectRow = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableGuest = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaTotal = new javax.swing.JTextArea();
@@ -178,23 +177,6 @@ public class JFrameMain extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 870, 480));
 
-        jPanel2.setBorder(jPanel1.getBorder());
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Name", "Email", "Phone", "RoomType", "Total"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 530, 330));
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 550, 350));
-
         jPanel3.setBorder(jPanel1.getBorder());
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -240,7 +222,7 @@ public class JFrameMain extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 260, 90));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 500, 380, 350));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 420, 350));
 
         jPanel4.setBorder(jPanel1.getBorder());
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -251,7 +233,7 @@ public class JFrameMain extends javax.swing.JFrame {
                 jPrintButtonActionPerformed(evt);
             }
         });
-        jPanel4.add(jPrintButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 300, 50));
+        jPanel4.add(jPrintButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 300, 50));
 
         jLabelName4.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
         jLabelName4.setText("Cash");
@@ -271,7 +253,7 @@ public class JFrameMain extends javax.swing.JFrame {
                 jChangeButtonActionPerformed(evt);
             }
         });
-        jPanel4.add(jChangeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 140, 50));
+        jPanel4.add(jChangeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, 140, 50));
 
         jPayButton.setText("Pay");
         jPayButton.addActionListener(new java.awt.event.ActionListener() {
@@ -279,10 +261,10 @@ public class JFrameMain extends javax.swing.JFrame {
                 jPayButtonActionPerformed(evt);
             }
         });
-        jPanel4.add(jPayButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 140, 50));
+        jPanel4.add(jPayButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 140, 50));
         jPanel4.add(jTextFieldCashInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 32, 240, 40));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 500, 350, 350));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 500, 870, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -300,14 +282,28 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void jResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResetButtonActionPerformed
         // TODO add your handling code here:
+        jTextFieldCashInput.setText(null);
     }//GEN-LAST:event_jResetButtonActionPerformed
 
     private void jChangeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChangeButtonActionPerformed
         // TODO add your handling code here:
+        Double cashstr = Double.valueOf(Integer.parseInt(jTextFieldCashInput.getText()));
+        Double changestr;
+        changestr = Double.valueOf((( jTextAreaTotal.getText())));
+        
+          
+        Double Cash = Double.valueOf(cashstr);
+        Double CashGiven = Cash - Double.valueOf(changestr);
+        
+        
+        jTextAreaGivenChange.setText((String.valueOf(CashGiven)));
+        jTextAreaCash.setText(Cash.toString());
     }//GEN-LAST:event_jChangeButtonActionPerformed
 
     private void jPayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPayButtonActionPerformed
-        // TODO add your handling code here:
+        jTextAreaTotal.setText(null);
+        jTextAreaCash.setText(null);
+        jTextAreaGivenChange.setText(null);
     }//GEN-LAST:event_jPayButtonActionPerformed
 
     private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
@@ -345,6 +341,7 @@ public class JFrameMain extends javax.swing.JFrame {
                         jTextFieldPhone.setText("");
                         jSelectRoomNo.setSelectedIndex(0);
                         jComboBoxSelectRow.addItem(phone);
+                        jTextAreaTotal.setText(jTableGuest.getValueAt(i, 7).toString());
                 }
                     
                 } else {
@@ -493,7 +490,9 @@ public class JFrameMain extends javax.swing.JFrame {
         }).start();
     }
 
+    
     public void addnewRoom() {
+        
 
 
         StandardRoom st101 = new StandardRoom(101,"Standard");
@@ -556,6 +555,7 @@ public class JFrameMain extends javax.swing.JFrame {
 
     }
 
+    
 
     public String getCurrentTime() {
         LocalDateTime now = LocalDateTime.now();
@@ -673,7 +673,20 @@ public class JFrameMain extends javax.swing.JFrame {
     class ReserveGuest extends customer{
 
         Date ReserveDate ;
+        Date CheckInDate ;
+        Date CheckoutDate ;
         public ReserveGuest() {
+            super(null, null,0);
+        }
+        
+    }
+    
+    class WalkInGuest extends customer{
+
+        Date CheckInDate ;
+        Date CheckoutDate ;
+        Date ReserveDate ;
+        public WalkInGuest() {
             super(null, null,0);
         }
         
@@ -695,19 +708,16 @@ public class JFrameMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelName4;
     private javax.swing.JLabel jLabelPhone;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JButton jPayButton;
     private javax.swing.JButton jPrintButton;
     private javax.swing.JButton jResetButton;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JComboBox<String> jSelectRoomNo;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableGuest;
     private javax.swing.JTextArea jTextAreaCash;
     private javax.swing.JTextArea jTextAreaGivenChange;

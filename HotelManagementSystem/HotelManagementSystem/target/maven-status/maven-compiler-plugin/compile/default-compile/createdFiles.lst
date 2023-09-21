@@ -1,4 +1,6 @@
 com\mycompany\hotelmanagementsystem\JFrameMain$4.class
+com\mycompany\hotelmanagementsystem\JFrameMain$customerArr.class
+com\mycompany\hotelmanagementsystem\JFrameMain$ReserveGuest.class
 com\mycompany\hotelmanagementsystem\JFrameMain$9.class
 com\mycompany\hotelmanagementsystem\HotelManagementSystem.class
 com\mycompany\hotelmanagementsystem\JFrameMain$StandardRoom.class
@@ -16,4 +18,6 @@ com\mycompany\hotelmanagementsystem\JFrameMain$8.class
 com\mycompany\hotelmanagementsystem\JFrameMain$11.class
 com\mycompany\hotelmanagementsystem\JFrameMain$3.class
 com\mycompany\hotelmanagementsystem\JFrameMain$Room.class
+com\mycompany\hotelmanagementsystem\JFrameMain$WalkInGuest.class
+com\mycompany\hotelmanagementsystem\JFrameMain$customer.class
 com\mycompany\hotelmanagementsystem\JFrameMain$DeluxeRoom.class
