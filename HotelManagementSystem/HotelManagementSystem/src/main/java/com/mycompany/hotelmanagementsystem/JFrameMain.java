@@ -607,7 +607,7 @@ public class JFrameMain extends javax.swing.JFrame {
         });
     }
 
-    class Room {
+    protected class Room {
         Integer roomNo;
         Double Price;
         String Type;
